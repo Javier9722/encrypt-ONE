@@ -1,0 +1,178 @@
+:root {
+  --darkBlue100: #609ed4;
+  --darkBlue200: #356ea9;
+  --darkBlue300: #0a3871;
+  --darkBlue400: #072b61;
+  --darkBlue500: #052051;
+
+  --gray100: #ced4da;
+  --gray200: #adb5bd;
+  --gray300: #868e96;
+  --gray400: #495057;
+  --gray500: #343a40;
+
+  --lightBlue100: #f3f5fc;
+  --lightBlue200: #eff1fa;
+  --lightBlue300: #e9ecf8;
+  --lightBlue400: #aab2d5;
+  --lightBlue500: #757fb2;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 100vh;
+  background-color: var(--lightBlue100);
+}
+
+nav {
+  height: 48px;
+  margin-top: 30px;
+}
+
+nav>img {
+  height: 100%;
+}
+
+section {
+  width: 80%;
+  height: calc(100vh - 78px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 0;
+  box-sizing: border-box;
+}
+
+section textarea {
+  border: none;
+  background-color: transparent;
+  color: var(--darkBlue300);
+  font-size: 2rem;
+  width: 100%;
+  height: 45%;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  outline: none;
+  resize: none;
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+section>.sb {
+  display: grid;
+  gap: 20px;
+}
+
+section span {
+  color: var(--gray400);
+}
+
+section .contBotones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/*estilos a botones generales*/
+button {
+  background-color: transparent;
+  border: 1px solid var(--darkBlue300);
+  color: var(--darkBlue300);
+  transition-property: background-color, color;
+  transition-duration: 250ms;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--darkBlue300);
+  color: white;
+}
+
+.contBotones button {
+  border-radius: 24px;
+  height: 67px;
+  width: 50%;
+  max-width: 328px;
+  min-width: 200px;
+}
+
+/* carta izquierda */
+
+.rightBody {
+  display: grid;
+  align-items: center;
+}
+
+.rightBody>.card {
+  background-color: white;
+  height: 90vh;
+  border-radius: 32px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  width: 80%;
+  overflow-y: auto;
+}
+
+/* no datos */
+.card>.noDatos {
+  width: 100%;
+}
+
+.noDatos>img {
+  width: 100%;
+}
+
+.noDatos>h3 {
+  margin: 0 10px;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.noDatos>p {
+  margin: 0 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* datos */
+
+.card>.datos {
+  width: 100%;
+}
+
+.datos>.normalEncrypt,
+.experimentalEncrypt {
+  margin: 0 20px;
+  display: grid;
+}
+
+.datos textarea {
+  border: none;
+  border-radius: 10px;
+  display: block;
+  resize: none;
+  overflow-y: auto;
+  height: 300px;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  box-shadow: 0 0 1px black;
+}
+
+.normalEncrypt>button,
+.experimentalEncrypt>button {
+  justify-self: center;
+  padding: 8px 24px;
+  border-radius: 12px;
+}
+
+/* Hiden */
+.noDisplay {
+  display: none;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+  <div class="leftBody">
+    <nav>
+      <img src="images/Logo.png" />
+    </nav>
+    <section class="">
+      <textarea id="textInput" placeholder="Ingrese el texto aqui"></textarea>
+      <div class="sb">
+        <span>
+          <i class="fas fa-exclamation-circle"></i>
+          Solo letras minusculas y sin acentos para la encriptación normal
+        </span>
+        <div class="contBotones">
+          <button id="btnEncrypt">Encriptar</button>
+          <button id="btnDecrypt">Desencriptar</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rightBody">
+    <div class="card">
+      <div class="noDatos noDisplay">
+        <img src="images/Muñeco.png" />
+        <h3>Ningún mensaje fue encontrado</h3>
+        <p>Ingrese el texto que desees encriptar o desencriptar</p>
+      </div>
+      <div class="datos">
+        <div class="normalEncrypt">
+          <h2>Encriptado Normal</h2>
+          <textarea id="normalEncrypt"></textarea>
+          <button>Copiar</button>
+        </div>
+        <div class="experimentalEncrypt">
+          <h2>Encriptado Experimental</h2>
+          <textarea id="experimentalEncrypt"></textarea>
+          <button>Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
