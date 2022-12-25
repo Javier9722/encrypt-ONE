@@ -2,7 +2,17 @@ const capBtnEncrypt = document.querySelector("#btnEncrypt");
 const capBtnDecrypt = document.querySelector("#btnDecrypt");
 const capTextAreaNormal = document.querySelector("#normalEncrypt");
 const capTextAreaExperimental = document.querySelector("#experimentalEncrypt");
+const capBtnNormalCopy = document.querySelector("#normalCopy");
+const capBtnExperimentalCopy = document.querySelector("#experimentalCopy");
+const capBtnClean = document.querySelector("#btnClean");
 
+// fix codigo
+
+capTextAreaNormal.onclick = (e) => {
+  console.log(e);
+};
+
+// ///////////
 const diccionario = [
   ["a", "ai"],
   ["e", "enter"],
@@ -21,7 +31,7 @@ const encrypt = (palabra) => {
     });
     return palabra.toLowerCase();
   } else {
-    return "La palabra se encuentra encriptada";
+    return false;
   }
 };
 
@@ -35,40 +45,71 @@ const decrypt = (palabra) => {
     });
     return palabra.toLowerCase();
   } else {
-    return "La palabra no se encuentra encriptada";
+    return false;
   }
 };
 
 //validaciones
 
 const validate = (palabra) => {
-  let val = diccionario.some(([letra, key]) => {
+  let val = diccionario.some(([, key]) => {
     return palabra.indexOf(key) >= 0;
   });
   return val;
 };
 
-// limpiar
-
-const clear = (value) => {
-  value.value = "";
+// mensajes
+const mensageEncrypt = (texto) => {
+  return `La palabra '${texto}' se encuentra encriptada`;
+};
+const mensageDecrypt = (texto) => {
+  return `La palabra '${texto}' no se encuentra encriptada`;
 };
 
-///////////////////////////////////////////////
-
-capBtnEncrypt.onclick = () => {
+// mostrar mensaje
+const mostrarEncrypt = () => {
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
   let respt = encrypt(value);
-  capTextAreaNormal.innerText = respt;
-  clear(capTextArea);
+  if (respt) {
+    capTextAreaNormal.value = respt;
+    capTextAreaNormal.style.color = "black";
+  } else {
+    capTextAreaNormal.value = mensageEncrypt(value);
+    capTextAreaNormal.style.color = "red";
+  }
 };
-capBtnDecrypt.onclick = () => {
+
+const mostrarDecrypt = () => {
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
   let respt = decrypt(value);
-  capTextAreaNormal.innerHTML = respt;
-  clear(capTextArea);
+  if (respt) {
+    capTextAreaNormal.value = respt;
+    capTextAreaNormal.style.color = "black";
+  } else {
+    capTextAreaNormal.value = mensageDecrypt(value);
+    capTextAreaNormal.style.color = "red";
+  }
 };
 
-// pruebas de enventos
+// copiar mensaje
+const copyMensaje = () => {
+  let capTextAreaNormal = document.querySelector("#normalEncrypt");
+  let value = capTextAreaNormal.value;
+  navigator.clipboard.writeText(value);
+};
+// limpiar
+const clean = () => {
+  let capTextArea = document.querySelector("#textInput");
+  let capTextAreaNormal = document.querySelector("#normalEncrypt");
+  capTextArea.value = "";
+  capTextAreaNormal.value = "";
+};
+
+////////////////////EVENTOS///////////////////////////
+
+capBtnEncrypt.onclick = () => mostrarEncrypt();
+capBtnDecrypt.onclick = () => mostrarDecrypt();
+capBtnNormalCopy.onclick = () => copyMensaje();
+capBtnClean.onclick = () => clean();

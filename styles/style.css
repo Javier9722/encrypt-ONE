@@ -46,22 +46,43 @@ section {
   box-sizing: border-box;
 }
 
-section textarea {
+textarea {
   border: none;
   background-color: transparent;
-  color: var(--darkBlue300);
-  font-size: 2rem;
   width: 100%;
-  height: 45%;
-  padding: 20px 20px;
-  box-sizing: border-box;
   outline: none;
   resize: none;
-  border-radius: 20px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-section>.sb {
+.inputs {
+  height: 45%;
+}
+
+.inputs>textarea {
+  color: var(--darkBlue300);
+  font-size: 2rem;
+  height: 100%;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+.inputs>.textOptions {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.textOptions>button {
+  padding: 8px 24px;
+  border-radius: 8px;
+}
+
+section>.options {
   display: grid;
   gap: 20px;
 }
@@ -153,16 +174,13 @@ button:hover {
 }
 
 .datos textarea {
-  border: none;
-  border-radius: 10px;
-  display: block;
-  resize: none;
-  overflow-y: auto;
-  height: 300px;
-  width: 100%;
   font-size: 1.2rem;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 4px black;
+  display: block;
+  overflow-y: auto;
   margin-bottom: 5px;
-  box-shadow: 0 0 1px black;
 }
 
 .normalEncrypt>button,

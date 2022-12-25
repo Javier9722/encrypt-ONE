@@ -15,9 +15,14 @@
     <nav>
       <img src="images/Logo.png" />
     </nav>
-    <section class="">
-      <textarea id="textInput" placeholder="Ingrese el texto aqui"></textarea>
-      <div class="sb">
+    <section>
+      <div class="inputs">
+        <textarea id="textInput" placeholder="Ingrese el texto aqui"></textarea>
+        <div class="textOptions">
+          <button id="btnClean">Limpiar</button>
+        </div>
+      </div>
+      <div class="options">
         <span>
           <i class="fas fa-exclamation-circle"></i>
           Solo letras minusculas y sin acentos para la encriptación normal
@@ -39,13 +44,13 @@
       <div class="datos">
         <div class="normalEncrypt">
           <h2>Encriptado Normal</h2>
-          <textarea id="normalEncrypt"></textarea>
-          <button>Copiar</button>
+          <textarea id="normalEncrypt" disabled></textarea>
+          <button id="normalCopy">Copiar</button>
         </div>
         <div class="experimentalEncrypt">
           <h2>Encriptado Experimental</h2>
-          <textarea id="experimentalEncrypt"></textarea>
-          <button>Copiar</button>
+          <textarea id="experimentalEncrypt" disabled></textarea>
+          <button id="experimentalCopy">Copiar</button>
         </div>
       </div>
     </div>
