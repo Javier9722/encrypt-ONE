@@ -5,9 +5,11 @@ const capTextAreaExperimental = document.querySelector("#experimentalEncrypt");
 const capBtnNormalCopy = document.querySelector("#normalCopy");
 const capBtnExperimentalCopy = document.querySelector("#experimentalCopy");
 const capBtnClean = document.querySelector("#btnClean");
+// capturando elementos para mostrar o no el display
+const capNoMessage = document.querySelector(".noDatos");
+const capMessage = document.querySelector(".datos");
 
 // fix codigo
-
 capTextAreaNormal.onclick = (e) => {
   console.log(e);
 };
@@ -60,20 +62,36 @@ const validate = (palabra) => {
 
 // mensajes
 const mensageEncrypt = (texto) => {
-  return `La palabra '${texto}' se encuentra encriptada`;
+  return texto.length > 0
+    ? `La palabra "${texto}" se encuentra encriptada`
+    : "No hay texto para encriptar";
 };
-const mensageDecrypt = (texto) => {
-  return `La palabra '${texto}' no se encuentra encriptada`;
+const mensageDecrypt = (texto = "na") => {
+  return texto.length > 0
+    ? `La palabra "${texto}" no se encuentra encriptada`
+    : "No hay texto para desencriptar";
+};
+
+// sin mensajes
+const nodisplay = () => {
+  capNoMessage.classList.remove("noDisplay");
+  capMessage.classList.add("noDisplay");
+};
+// con mensajes
+const display = () => {
+  capNoMessage.classList.add("noDisplay");
+  capMessage.classList.remove("noDisplay");
 };
 
 // mostrar mensaje
 const mostrarEncrypt = () => {
+  display();
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
   let respt = encrypt(value);
   if (respt) {
     capTextAreaNormal.value = respt;
-    capTextAreaNormal.style.color = "black";
+    capTextAreaNormal.style.color = "green";
   } else {
     capTextAreaNormal.value = mensageEncrypt(value);
     capTextAreaNormal.style.color = "red";
@@ -81,12 +99,13 @@ const mostrarEncrypt = () => {
 };
 
 const mostrarDecrypt = () => {
+  display();
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
   let respt = decrypt(value);
   if (respt) {
     capTextAreaNormal.value = respt;
-    capTextAreaNormal.style.color = "black";
+    capTextAreaNormal.style.color = "green";
   } else {
     capTextAreaNormal.value = mensageDecrypt(value);
     capTextAreaNormal.style.color = "red";
@@ -105,6 +124,7 @@ const clean = () => {
   let capTextAreaNormal = document.querySelector("#normalEncrypt");
   capTextArea.value = "";
   capTextAreaNormal.value = "";
+  nodisplay();
 };
 
 ////////////////////EVENTOS///////////////////////////

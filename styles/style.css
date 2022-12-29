@@ -53,6 +53,7 @@ textarea {
   outline: none;
   resize: none;
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 .inputs {
@@ -64,7 +65,6 @@ textarea {
   font-size: 2rem;
   height: 100%;
   padding: 20px 20px;
-  box-sizing: border-box;
   border-radius: 20px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
@@ -181,6 +181,7 @@ button:hover {
   display: block;
   overflow-y: auto;
   margin-bottom: 5px;
+  padding: 5px 5px;
 }
 
 .normalEncrypt>button,
@@ -193,4 +194,49 @@ button:hover {
 /* Hiden */
 .noDisplay {
   display: none;
+}
+
+/* mediaquery */
+@media (max-width:1050px) {
+  body {
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr;
+  }
+
+  section {
+    height: auto;
+  }
+
+  .inputs>textarea {
+    height: 400px;
+  }
+
+  .rightBody {
+    justify-items: center;
+    align-items: flex-start;
+    padding: 0 0 20px 0;
+  }
+
+  .rightBody>.card {
+    height: auto;
+  }
+
+  .card>.noDatos {
+    padding: 20px 0;
+  }
+
+  .noDatos>img {
+    display: none;
+  }
+
+  .datos textarea {
+    height: 100px;
+  }
+
+}
+
+@media (max-width:524px) {
+  section .contBotones {
+    display: grid;
+  }
 }
