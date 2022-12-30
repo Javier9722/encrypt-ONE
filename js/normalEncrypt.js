@@ -11,8 +11,6 @@ const capBtnClean = document.querySelector("#btnClean");
 const capNoMessage = document.querySelector(".noDatos");
 const capMessage = document.querySelector(".datos");
 
-// Encriptador normal //
-////////////////////////
 const diccionario = [
   ["a", "ai"],
   ["e", "enter"],
@@ -21,7 +19,8 @@ const diccionario = [
   ["u", "ufat"],
 ];
 
-// encriptado
+// ENCRIPTADO
+// normal
 const encrypt = (palabra) => {
   if (!validate(palabra)) {
     diccionario.forEach(([letra, key]) => {
@@ -34,8 +33,22 @@ const encrypt = (palabra) => {
     return false;
   }
 };
+// prueba
+const pruebaEncrypt = (palabra) => {
+  if (!pruebaValidate(palabra)) {
+    diccionario2.forEach(([letra, key]) => {
+      if (palabra.indexOf(letra) >= 0) {
+        palabra = palabra.replaceAll(letra, key.toUpperCase());
+      }
+    });
+    return palabra.toLowerCase();
+  } else {
+    return false;
+  }
+};
 
-// Desencriptado
+// DESENCRIPTADO
+// normal
 const decrypt = (palabra) => {
   if (validate(palabra)) {
     diccionario.forEach(([letra, key]) => {
@@ -48,11 +61,30 @@ const decrypt = (palabra) => {
     return false;
   }
 };
-
-//validaciones
-
+// prueba
+const pruebaDecrypt = (palabra) => {
+  if (pruebaValidate(palabra)) {
+    diccionario2.forEach(([letra, key]) => {
+      if (palabra.indexOf(key) >= 0) {
+        palabra = palabra.replaceAll(key, letra.toUpperCase());
+      }
+    });
+    return palabra.toLowerCase();
+  } else {
+    return false;
+  }
+};
+// VALIDACIONES
+// normal
 const validate = (palabra) => {
   let val = diccionario.some(([, key]) => {
+    return palabra.indexOf(key) >= 0;
+  });
+  return val;
+};
+// prueba
+const pruebaValidate = (palabra) => {
+  let val = diccionario2.some(([, key]) => {
     return palabra.indexOf(key) >= 0;
   });
   return val;
@@ -86,13 +118,21 @@ const mostrarEncrypt = () => {
   display();
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
-  let respt = encrypt(value);
-  if (respt) {
-    capTextAreaNormal.value = respt;
+  let resptNormal = encrypt(value);
+  let resptPrueba = pruebaEncrypt(value);
+  if (resptNormal) {
+    capTextAreaNormal.value = resptNormal;
     capTextAreaNormal.style.color = "green";
   } else {
     capTextAreaNormal.value = mensageEncrypt(value);
     capTextAreaNormal.style.color = "red";
+  }
+  if (resptPrueba) {
+    capTextAreaExperimental.value = resptPrueba;
+    capTextAreaExperimental.style.color = "green";
+  } else {
+    capTextAreaExperimental.value = mensageEncrypt(value);
+    capTextAreaExperimental.style.color = "red";
   }
 };
 
@@ -100,20 +140,33 @@ const mostrarDecrypt = () => {
   display();
   let capTextArea = document.querySelector("#textInput");
   let value = capTextArea.value;
-  let respt = decrypt(value);
-  if (respt) {
-    capTextAreaNormal.value = respt;
+  let resptNormal = decrypt(value);
+  let resptPrueba = pruebaDecrypt(value);
+  if (resptNormal) {
+    capTextAreaNormal.value = resptNormal;
     capTextAreaNormal.style.color = "green";
   } else {
     capTextAreaNormal.value = mensageDecrypt(value);
     capTextAreaNormal.style.color = "red";
   }
+  if (resptPrueba) {
+    capTextAreaExperimental.value = resptPrueba;
+    capTextAreaExperimental.style.color = "green";
+  } else {
+    capTextAreaExperimental.value = mensageEncrypt(value);
+    capTextAreaExperimental.style.color = "red";
+  }
 };
 
 // copiar mensaje
-const copyMensaje = () => {
+const copyMensajeNormal = () => {
   let capTextAreaNormal = document.querySelector("#normalEncrypt");
   let value = capTextAreaNormal.value;
+  navigator.clipboard.writeText(value);
+};
+const copyMensajePrueba = () => {
+  let capTextAreaExperimental = document.querySelector("#experimentalEncrypt");
+  let value = capTextAreaExperimental.value;
   navigator.clipboard.writeText(value);
 };
 // limpiar
@@ -124,17 +177,12 @@ const clean = () => {
   capTextAreaNormal.value = "";
   nodisplay();
 };
-////////////////////////////////////
-// Fin del encriptador normal
-// ----------------------------------------------------------------- //
-// Encriptador de prueba
 
-////////////////////////////////////
-// Fin del encriptador de prueba
-
-////////////////////EVENTOS///////////////////////////
-
+// EVENTOS
 capBtnEncrypt.onclick = () => mostrarEncrypt();
 capBtnDecrypt.onclick = () => mostrarDecrypt();
-capBtnNormalCopy.onclick = () => copyMensaje();
+capBtnNormalCopy.onclick = () => copyMensajeNormal();
+capBtnExperimentalCopy.onclick = () => copyMensajePrueba();
 capBtnClean.onclick = () => clean();
+
+///////////////////////////////////////////////////////////////////////////////////////////
